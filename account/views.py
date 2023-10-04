@@ -12,19 +12,18 @@ def user_login(request) :
             user = authenticate(request,
                                 username=cd['username'],
                                 password=cd['password'])
-            if user is not None :
-                if user.is_active :
-                    login(request,user)
-                    return HttpResponse('Auth seccessfully')
-                else :
-                    return HttpResponse('Disamble account')
-            else:
-                return HttpResponse('Invalid login')
+        if user is not None :
+            if user.is_active :
+                login(request,user)
+                return HttpResponse('Auth seccessfully')
+            else :
+                return HttpResponse('Disamble account')
         else:
-            form = LoginForm()
-        return render(request, 'account/login.html' , {'form' : form})
+            return HttpResponse('Invalid login')
     else:
-        return HttpResponse('Invalid login')
+        form = LoginForm()
+    return render(request, 'account/login.html' , {'form' : form})
+
 @login_required
 def dashboard(request) :
     return render(request,
