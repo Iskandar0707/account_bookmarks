@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Welcom {{new_user.first_name}}</h1>
+<p>
+    Salom alaykum Bratuxa
+    Now you can <a href="{% url 'login' %}">Log-in</a>
+</p>
+{% endblock %}
